@@ -46,19 +46,16 @@ public class SemaphoreResourceFactory {
      */
     public RpcResult<EnvRoomDo> getRoom(){
         EnvRoomDo roomDo = null;
-        synchronized (envRooms){
-            if(envRooms != null && envRooms.size() > 0){
-                roomDo = envRooms.remove(0);
+        if(semaphoreConstant.getResouceRoomSemaphore().tryAcquire()){
+            synchronized (envRooms) {
+                if (envRooms != null && envRooms.size() > 0) {
+                    roomDo = envRooms.remove(0);
+                }
             }
         }
         if(roomDo == null){
             return RpcResult.ofError(ErrorCode.BUSSINESS_ERROR.getCode(), "房间资源已被占满");
         }else {
-            try {
-                semaphoreConstant.getResouceRoomSemaphore().acquire();
-            }catch(InterruptedException e){
-                logger.error("Semaphore acquire error : {}", e);
-            }
             return RpcResult.ofSuccess(roomDo);
         }
     }
@@ -70,9 +67,8 @@ public class SemaphoreResourceFactory {
      * @return
      */
     public RpcResult<Boolean> releaseRoom(EnvRoomDo roomDo){
-        //synchronized (envRooms)
         envRooms.add(roomDo);
-        semaphoreConstant.getResouceRoomSemaphore().release();;
+        semaphoreConstant.getResouceRoomSemaphore().release();
         return RpcResult.ofSuccess(true);
     }
 

@@ -31,7 +31,6 @@ public class SemaphoreController {
         if(roomDo.getErrorCode() == 200) {
             logger.info("roomDo name = {}", roomDo.getValue().getName());
             releaseRoom(roomDo.getValue());
-
         }else{
             logger.info("error msg = {}", roomDo.getErrorMsg());
         }
