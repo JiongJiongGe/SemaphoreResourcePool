@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="env.semaphore.semaphore.mapper.EnvUserMapper">
+<mapper namespace="env.semaphore.semaphore.mapper.EnvRoomMapper">
 
     <sql id="tableName">
-        t_user
+        t_room
     </sql>
 
     <sql id="selectColumns">
         *
     </sql>
 
-    <select id="queryList" resultType="env.semaphore.semaphore.domain.EnvUserDo">
+    <select id="queryList" resultType="env.semaphore.semaphore.domain.EnvRoomDo">
         SELECT
         <include refid="selectColumns" />
         FROM

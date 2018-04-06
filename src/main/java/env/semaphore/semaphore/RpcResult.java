@@ -6,8 +6,8 @@ import java.io.Serializable;
  * @Intro: 对返回数据封装
  *
  * @Author: WangJiongDa(yunkai)
- * @Date: 2018/3/9
- * @Time: 下午7:52
+ * @Date: 2018/04/02
+ * @Time: 20:52
  */
 public class RpcResult<T> implements Serializable{
 

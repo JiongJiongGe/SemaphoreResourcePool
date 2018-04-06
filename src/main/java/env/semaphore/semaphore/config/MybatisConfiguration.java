@@ -17,8 +17,8 @@ import javax.sql.DataSource;
 /**
  * @Intro:
  * @Author: WangJiongDa(yunkai)
- * @Date: 2018/3/9
- * @Time: 上午10:27
+ * @Date: 2018/04/02
+ * @Time: 20:12
  */
 @Configuration
 public class MybatisConfiguration implements TransactionManagementConfigurer {

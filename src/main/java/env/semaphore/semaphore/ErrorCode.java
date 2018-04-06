@@ -3,12 +3,16 @@ package env.semaphore.semaphore;
 /**
  * @Intro:  状态错误码
  * @Author: WangJiongDa(yunkai)
- * @Date: 2018/3/9
- * @Time: 下午7:51
+ * @Date: 2018/04/02
+ * @Time: 20:51
  */
 public enum ErrorCode {
 
-    BIZ_ERROR("%s错误", 100001);
+    BIZ_ERROR("%s错误", 100001),
+
+    BUSSINESS_ERROR("%错误", 110001);
+
+
 
     private String msg;
 
