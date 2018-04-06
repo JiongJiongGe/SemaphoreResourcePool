@@ -25,14 +25,6 @@ public class SemaphoreController {
 
     private static Logger logger = LoggerFactory.getLogger(SemaphoreController.class);
 
-    @Autowired
-    private EnvRoomService envUserService;
-
-    @RequestMapping(value = "/list")
-    public RpcResult<List<EnvRoomDo>> list(){
-        return envUserService.findList();
-    }
-
     @RequestMapping(value = "/request/resource")
     public RpcResult<Boolean> requestResource(){
         RpcResult<EnvRoomDo> roomDo = preempteRoom();
