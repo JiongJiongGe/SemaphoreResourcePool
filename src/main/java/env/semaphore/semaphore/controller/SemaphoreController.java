@@ -25,15 +25,34 @@ public class SemaphoreController {
 
     private static Logger logger = LoggerFactory.getLogger(SemaphoreController.class);
 
+    /**
+     * 获取房间资源
+     *
+     * @return
+     */
     @RequestMapping(value = "/request/resource")
-    public RpcResult<Boolean> requestResource(){
+    public RpcResult<Boolean> requestResource() {
         RpcResult<EnvRoomDo> roomDo = preempteRoom();
         if(roomDo.getErrorCode() == 200) {
             logger.info("roomDo name = {}", roomDo.getValue().getName());
-            releaseRoom(roomDo.getValue());
+            //releaseRoom(roomDo.getValue());
         } else {
             logger.info("error msg = {}", roomDo.getErrorMsg());
         }
+        return RpcResult.ofSuccess(true);
+    }
+
+    /**
+     * 增加房间资源
+     *
+     * @return
+     */
+    @RequestMapping(value = "/release/room")
+    public RpcResult<Boolean> releaseRoom() {
+        EnvRoomDo envRoomDo = new EnvRoomDo();
+        envRoomDo.setId(11);
+        envRoomDo.setName("教室_11");
+        releaseRoom(envRoomDo);
         return RpcResult.ofSuccess(true);
     }
 

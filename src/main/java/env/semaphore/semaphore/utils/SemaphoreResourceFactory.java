@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Intro:
@@ -46,12 +47,16 @@ public class SemaphoreResourceFactory {
      */
     public RpcResult<EnvRoomDo> getRoom(){
         EnvRoomDo roomDo = null;
-        if(semaphoreConstant.getResouceRoomSemaphore().tryAcquire()){
-            synchronized (envRooms) {
+        try {
+            if(semaphoreConstant.getResouceRoomSemaphore().tryAcquire(10, TimeUnit.SECONDS)){
                 if (envRooms != null && envRooms.size() > 0) {
                     roomDo = envRooms.remove(0);
                 }
+            } else {
+                logger.info("超时了...");
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         if(roomDo == null){
             return RpcResult.ofError(ErrorCode.BUSSINESS_ERROR.getCode(), "房间资源已被占满");
