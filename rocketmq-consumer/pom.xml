@@ -11,5 +11,11 @@
 
     <artifactId>rocketmq-consumer</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>env.rocketmq</groupId>
+            <artifactId>rocketmq-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

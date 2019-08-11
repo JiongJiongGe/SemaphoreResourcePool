@@ -1,0 +1,4 @@
+Producer.class
+AsyncProducer.class
+SyncProducer.class
+OnewayProducer.class

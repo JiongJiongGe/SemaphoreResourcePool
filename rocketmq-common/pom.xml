@@ -9,13 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rocketmq-producer</artifactId>
+    <artifactId>rocketmq-common</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>env.rocketmq</groupId>
-            <artifactId>rocketmq-common</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
