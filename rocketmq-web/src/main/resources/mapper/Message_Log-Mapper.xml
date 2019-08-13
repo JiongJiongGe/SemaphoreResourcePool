@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="rocketmq.mapper.MessageLogMapper">
+
+    <sql id="tableName">
+        t_message_log
+    </sql>
+
+    <sql id="selectColumns">
+        *
+    </sql>
+
+    <!--insert数据-->
+   <insert id="insertMessageLog" parameterType="rocketmq.domain.MessageLogDo">
+        INSERT INTO
+        <include refid="tableName" />
+        (`state`)
+        VALUES
+        (#{state})
+   </insert>
+
+    <!--根据id更新数据状态-->
+    <update id="updateMessage" parameterType="rocketmq.domain.MessageLogDo">
+        UPDATE
+        <include refid="tableName" />
+        SET
+        state = #{state}
+        WHERE
+        id = #{id}
+    </update>
+
+</mapper>
