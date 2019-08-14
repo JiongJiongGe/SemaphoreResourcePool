@@ -1,5 +1,7 @@
 package rocketmq.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import rocketmq.domain.MessageLogDo;
 
@@ -7,7 +9,8 @@ import rocketmq.domain.MessageLogDo;
  * @author Wangjiongda
  * @date 2019-08-11 15:53
  */
-@Repository
+@Component
+@Mapper
 public interface MessageLogMapper {
 
     /**

@@ -3,19 +3,30 @@
 <mapper namespace="rocketmq.mapper.MessageLogMapper">
 
     <sql id="tableName">
-        t_user
+        t_message_log
     </sql>
 
     <sql id="selectColumns">
         *
     </sql>
 
-    <select id="queryByName" parameterType="String" resultType="rocketmq.domain.MessageLogDo">
-        SELECT
-        <include refid="selectColumns" />
-        FROM
+    <!--insert数据-->
+   <insert id="insertMessageLog" parameterType="rocketmq.domain.MessageLogDo" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO
         <include refid="tableName" />
-        WHERE `name` = #{name}
-    </select>
+        (`state`)
+        VALUES
+        (#{state})
+   </insert>
+
+    <!--根据id更新数据状态-->
+    <update id="updateMessage" parameterType="rocketmq.domain.MessageLogDo">
+        UPDATE
+        <include refid="tableName" />
+        SET
+        state = #{state}
+        WHERE
+        id = #{id}
+    </update>
 
 </mapper>

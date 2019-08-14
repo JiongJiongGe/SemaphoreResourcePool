@@ -11,7 +11,7 @@
     </sql>
 
     <!--insert数据-->
-   <insert id="insertMessageLog" parameterType="rocketmq.domain.MessageLogDo">
+   <insert id="insertMessageLog" parameterType="rocketmq.domain.MessageLogDo" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO
         <include refid="tableName" />
         (`state`)
