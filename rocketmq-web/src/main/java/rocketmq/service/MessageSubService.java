@@ -5,6 +5,8 @@ import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import rocketmq.constants.MqConstant;
 import rocketmq.domain.MessageLogDo;
@@ -19,6 +21,8 @@ import javax.annotation.PreDestroy;
  */
 @Service
 public class MessageSubService {
+
+    private static Logger logger = LoggerFactory.getLogger(MessageSubService.class);
 
     /**
      * 消息生产者
@@ -53,6 +57,7 @@ public class MessageSubService {
                             started = true;
                             System.out.println("producer 启动成功");
                         } catch (MQClientException e) {
+                            System.out.println("error = " + e.getMessage());
                             e.printStackTrace();
                         }
                     } else {
@@ -60,7 +65,7 @@ public class MessageSubService {
                     }
                 }
             }
-        });
+        }).start();
     }
 
     /**
@@ -82,9 +87,11 @@ public class MessageSubService {
             return;
         }
         try {
-            Message message = new Message(MqConstant.MESSAGE_TOPIC, "*", JSONObject.toJSONString(messageLogDo).getBytes());
-            SendResult sendResult = producer.send(message);
+            Message message = new Message(MqConstant.MESSAGE_TOPIC, "*", "KEY" + messageLogDo.getId(), JSONObject.toJSONString(messageLogDo).getBytes());
+            SendResult sendResult = producer.send(message, 30000);
+            System.out.println("消息发送成功...");
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("消息推送失败，消息内容: " + JSONObject.toJSONString(messageLogDo));
         }
     }

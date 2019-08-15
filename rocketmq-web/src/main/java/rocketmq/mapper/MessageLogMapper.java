@@ -14,6 +14,14 @@ import rocketmq.domain.MessageLogDo;
 public interface MessageLogMapper {
 
     /**
+     * 根据id获取对象
+     *
+     * @param id
+     * @return
+     */
+    MessageLogDo getById(Long id);
+
+    /**
      * insert数据
      *
      * @param messageLogDo

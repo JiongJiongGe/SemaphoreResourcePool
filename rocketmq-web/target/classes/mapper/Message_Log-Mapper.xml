@@ -10,6 +10,15 @@
         *
     </sql>
 
+    <select id="getById" resultType="rocketmq.domain.MessageLogDo" parameterType="long">
+        SELECT
+        <include refid="selectColumns" />
+        FROM
+        <include refid="tableName" />
+        WHERE
+        id = #{id}
+    </select>
+
     <!--insert数据-->
    <insert id="insertMessageLog" parameterType="rocketmq.domain.MessageLogDo" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO
@@ -24,7 +33,8 @@
         UPDATE
         <include refid="tableName" />
         SET
-        state = #{state}
+        state = #{state},
+        modified = #{modified}
         WHERE
         id = #{id}
     </update>

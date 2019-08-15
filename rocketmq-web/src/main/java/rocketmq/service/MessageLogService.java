@@ -16,6 +16,16 @@ public class MessageLogService {
     private MessageLogMapper messageLogMapper;
 
     /**
+     * 根据id获取对象
+     *
+     * @param id
+     * @return
+     */
+    public MessageLogDo getById(Long id) {
+        return messageLogMapper.getById(id);
+    }
+
+    /**
      * insert数据
      *
      * @param messageLogDo

@@ -1,6 +1,7 @@
 package rocketmq.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Wangjiongda
@@ -18,6 +19,11 @@ public class MessageLogDo implements Serializable {
      */
     private Integer state;
 
+    /**
+     * 修改时间
+     */
+    private Date modified;
+
     public Long getId() {
         return id;
     }
@@ -32,5 +38,13 @@ public class MessageLogDo implements Serializable {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 }
